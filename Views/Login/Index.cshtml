@@ -1,0 +1,30 @@
+﻿@model TimeTracking_Ui.Models.Login
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+   
+<br></br><br></br>
+<h2>Hi!!!...</h2>
+
+
+<br></br>
+   <div class="row">
+
+    <form class="row g-3" asp-controller="Login" asp-action="Index" method="post">
+        <div class="col-md-6">
+            <label asp-for="Id" class="form-label">ID</label>
+            <input asp-for="Id" class="form-control" id="inputId">
+        </div>
+        <div class="col-md-6">
+            <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" id="inputId">
+        </div>
+
+        <br></br><br></br>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+</form>
+</div>
+
