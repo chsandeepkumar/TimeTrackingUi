@@ -1,0 +1,41 @@
+﻿@model TimeTracking_Ui.Models.Role
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+   
+<br></br><br></br>
+<h2>What is your Role??...</h2>
+
+
+<br></br>
+   <div class="row">
+
+    <form class="row g-3" asp-controller="Role" asp-action="Index" method="post">
+        <div class="col-md-6">
+            <label asp-for="Roleid" class="form-label">RoleID</label>
+            <input asp-for="Roleid" class="form-control" id="inputId">
+        </div>
+        <div class="col-md-6">
+            <label asp-for="RoleName" class="form-label">RoleName</label>
+            <input asp-for="RoleName" class="form-control" id="inputId">
+        </div>
+         <div class="col-md-6">
+            <label asp-for="RoleDescription" class="form-label">RoleDescription</label>
+            <input asp-for="RoleDescription" class="form-control" id="inputId">
+        </div>
+         <div class="col-md-6">
+            <label asp-for="CreatedDateTime" class="form-label">CreatedDateTime</label>
+            <input asp-for="CreatedDateTime" class="form-control" id="inputId">
+        </div>
+        <div class="col-md-6">
+          <label asp-for="UpdatedDateTime" class="form-label">UpdatedDateTime</label>
+            <input asp-for="UpdatedDateTime" class="form-control" id="inputId">
+        </div>
+
+        <br></br><br></br>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+</form>
+</div>
