@@ -2,6 +2,7 @@
 
 namespace TimeTracking_Ui.Controllers
 {
+    
     public class UserRegistrationController : Controller
     {
         //GET 
@@ -16,20 +17,26 @@ namespace TimeTracking_Ui.Controllers
 
         [HttpPost]
       
-        public ActionResult Index(UserRegistration userRegistration)
+        public IActionResult SaveUser(UserRegistration userRegistration)
         {
-            
-            int Id = userRegistration.Id;
-            DateTime CreatedDateTime = userRegistration.CreatedDateTime;
-            DateTime UpdatedDateTime = userRegistration.UpdatedDateTime;
-            string? Name = userRegistration.Name;
-            string? EmailAddress = userRegistration.EmailAddress;
-            string? FirstName = userRegistration.FirstName;
-            string LastName = userRegistration.LastName;
-            int RoleId = userRegistration.RoleId;
-            return View();
-        }
 
+            try
+            {
+                DatabaseService databaseService = new DatabaseService();
+
+                var numberOfRecordsUpdated = databaseService.SaveUser(userRegistration);
+
+                return Ok(numberOfRecordsUpdated);
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+        
         //GET: UserRegistrationController/Edit/5
         //public ActionResult Edit(int id)
         //{

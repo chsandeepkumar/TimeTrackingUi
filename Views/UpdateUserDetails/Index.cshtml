@@ -1,16 +1,16 @@
-﻿@model TimeTracking_Ui.UserRegistration
+﻿@model TimeTracking_Ui.Models.UpdateUserDetails
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <br></br><br></br>
-<h2>WELCOME</h2>
+<h2>Update UserDetails.....</h2>
 
-<br></br>
-   <div class="row">
 
-    <form class="row g-3" asp-controller="UserRegistration" asp-action="SaveUser" method="post">
+<div class="row">
+
+    <form class="row g-3" asp-controller="UpdateUserDetails" asp-action="UpdateUser" method="put">
         <div class="col-md-6">
             <label asp-for="Id" class="form-label">ID</label>
             <input asp-for="Id" class="form-control" id="inputId">
@@ -45,15 +45,9 @@
            <label asp-for="RoleId" class="form-label">RoleId</label>
             <input asp-for="RoleId" class="form-control" id="inputId">
         
-        </div><br></br><br></br>
+        <br></br><br></br>
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Register</button>
+            <button type="submit" class="btn btn-primary">UpdateUser</button>
         </div>
     </form>
 </div>
-
- 
-
-
-
-
