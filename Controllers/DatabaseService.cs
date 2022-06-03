@@ -24,7 +24,8 @@ namespace TimeTracking_Ui.Controllers
                     '{userRegistration.EmailAddress}',
                     '{userRegistration.FirstName}',
                     '{userRegistration.LastName}',
-                    {userRegistration.RoleId})";
+                    {userRegistration.RoleId},
+                     '{userRegistration.Password}')";
 
                 var result = cmd.ExecuteNonQuery();
                 return result;
@@ -59,7 +60,7 @@ namespace TimeTracking_Ui.Controllers
                     userRegistration.FirstName = result.GetString(5);
                     userRegistration.LastName = result.GetString(6);
                     userRegistration.RoleId = result.GetInt32(7);
-
+                    userRegistration.Password = result.GetString(8);
                     userreg.Add(userRegistration);
                 }
                 result.Close();
@@ -81,18 +82,37 @@ namespace TimeTracking_Ui.Controllers
                 sqlConnection.Open();
                 SqlCommand sqlCommand = sqlConnection.CreateCommand();
 
-                sqlCommand.CommandText = $@"update UserRegistration set CreatedDateTime='{userRegistration.CreatedDateTime}'," +
-                       $"UpdatedDateTime='{userRegistration.UpdatedDateTime}'," +
-                         $"Name='{userRegistration.Name}'" +
-                    $"EmailAddress='{userRegistration.EmailAddress}'," +
-                    $"FirstName='{userRegistration.FirstName}'," +
-                    $"LastName='{userRegistration.LastName}'," +
-                    $"RoleId='{userRegistration.RoleId}'," +                
-                  
-                    $" where Id={userRegistration.Id}";
+                sqlCommand.CommandText = $@"update UserRegistration set Id = {userRegistration.Id},
+                      CreatedDateTime='{userRegistration.CreatedDateTime}',
+                       UpdatedDateTime='{userRegistration.UpdatedDateTime}',
+                       Name='{userRegistration.Name}',
+                    EmailAddress='{userRegistration.EmailAddress}',
+                    FirstName='{userRegistration.FirstName}',
+                    LastName='{userRegistration.LastName}',
+                    RoleId={userRegistration.RoleId},          
+                   Password='{userRegistration.Password}'
+                     where Id={userRegistration.Id}";
 
-                var upddatedRecordCount = sqlCommand.ExecuteNonQuery();
-                return upddatedRecordCount;
+                var Count = sqlCommand.ExecuteNonQuery();
+                return Count;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public int DeleteUser(int id)
+        {
+            try
+            {
+                SqlConnection sqlConnection = new SqlConnection();
+                sqlConnection.ConnectionString = DatabaseConnectionString;
+                sqlConnection.Open();
+                SqlCommand sqlCommand = sqlConnection.CreateCommand();
+                sqlCommand.CommandText = $"Delete from UserRegistration where id='{id}'";
+
+                var var = sqlCommand.ExecuteNonQuery();
+                return var;
             }
             catch (Exception ex)
             {
