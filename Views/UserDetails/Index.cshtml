@@ -21,5 +21,77 @@
     </form>
 </div>
 
+<br></br><br>
+<h2>Update UserDetails.....</h2>
+
+
+<div class="row">
+
+    <form class="row g-3" asp-controller="UserDetails" asp-action="UpdateUser" method="post">
+        <div class="col-md-6">
+            <label asp-for="Id" class="form-label">ID</label>
+            <input asp-for="Id" class="form-control" id="inputId">
+        </div>
+        <div class="col-md-6">
+            <label asp-for="CreatedDateTime" class="form-label">CreatedDateTime</label>
+            <input asp-for="CreatedDateTime" class="form-control" id="inputId">
+        </div>
+        <div class="col-md-6">
+          <label asp-for="UpdatedDateTime" class="form-label">UpdatedDateTime</label>
+            <input asp-for="UpdatedDateTime" class="form-control" id="inputId">
+        </div>
+        <div class="col-md-6">
+           <label asp-for="Name" class="form-label">Name</label>
+            <input asp-for="Name" class="form-control" id="inputId">
+        </div>
+
+        <div class="col-md-6">
+            <label asp-for="EmailAddress" class="form-label">EmailAddress</label>
+            <input asp-for="EmailAddress" class="form-control" id="inputId">
+        </div>
+        <div class="col-md-6">
+           <label asp-for="FirstName" class="form-label">FirstName</label>
+            <input asp-for="FirstName" class="form-control" id="inputId">
+        </div>
+        <div class="col-md-6">
+           <label asp-for="LastName" class="form-label">LastName</label>
+            <input asp-for="LastName" class="form-control" id="inputId">
+       
+        </div>
+        <div class="col-md-6">
+           <label asp-for="RoleId" class="form-label">RoleId</label>
+            <input asp-for="RoleId" class="form-control" id="inputId">
+        </div>
+         
+        <div class="col-md-6">
+           <label asp-for="Password" class="form-label">Password</label>
+            <input asp-for="Password" class="form-control" id="inputId">
+       
+        </div>
+        <br></br><br>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">UpdateUser</button>
+        </div>
+    </form>
+</div>
+
+<br></br><br>
+<h2>Delete User.....</h2>
+
+
+
+<div class="row">
+
+    <form class="row g-3" asp-controller="UserDetails" asp-action="DeleteUser" method="get">
+        <div class="col-md-6">
+            <label asp-for="Id" class="form-label">ID</label>
+            <input asp-for="Id" class="form-control" id="inputId">
+        </div>
+        <br></br><br></br>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">DeleteUser</button>
+        </div>
+    </form>
+</div>
 
 
