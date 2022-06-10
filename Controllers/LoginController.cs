@@ -11,11 +11,24 @@ namespace TimeTracking_Ui.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Index(Login login)
+        public IActionResult UserLogin(Login login)
         {
-            int Id = login.Id;
-            string? Name = login.Name;
-            return View();
+            
+
+            try
+            {
+                DatabaseService databaseService = new DatabaseService();
+
+                var isSuccess = databaseService.UserLogin(login);
+
+                return Redirect("Role"); 
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

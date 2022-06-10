@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
+using TimeTracking_Ui.Models;
 
 namespace TimeTracking_Ui.Controllers
 {
@@ -117,6 +118,33 @@ namespace TimeTracking_Ui.Controllers
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+        public bool UserLogin(Login login)
+        {
+            try
+            {
+                SqlConnection sqlConnection = new()
+                {
+                    ConnectionString = DatabaseConnectionString
+                };
+
+                sqlConnection.Open();
+                SqlCommand cmd = sqlConnection.CreateCommand();
+
+                cmd.CommandText = $"select Name from UserRegistration where name='{login.Name}'";
+
+                var result = cmd.ExecuteReader();
+
+                UserRegistration userRegistration = new UserRegistration();
+
+                return result.Read();
+
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+
             }
         }
     }
