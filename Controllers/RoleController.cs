@@ -7,20 +7,36 @@ namespace TimeTracking_Ui.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.message = "What is your Role";
+            //ViewBag.message = "What is your Role";
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(Role role)
-        {
-            int Roleid = role.Roleid;
-            string? RoleName = role.RoleName;
-            string? RoleDescription = role.RoleDescription;
-            DateTime CreatedDateTime = role.CreatedDateTime;
-            DateTime UpdatedDateTime = role.UpdatedDateTime;
-            return View();
-        }
+        //public ActionResult Index(Role role)
+        //{
+        //    try
+        //    {
+        //        DatabaseService databaseService = new DatabaseService();
+
+        //        var isSuccess = databaseService.UserRole(role);
+        //        if (isSuccess)
+        //        {
+        //            return RedirectToAction("Index");
+        //        }
+        //        else
+        //        {
+        //            ViewBag.message = "Please enter valid role details..";
+        //            return View("../Role/Index");
+        //        }
+
+        //    }
+
+        //    catch (Exception ex)
+        //    {
+
+        //        throw ex;
+        //    };
+        //}
 
 
     }

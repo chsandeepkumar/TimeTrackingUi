@@ -7,7 +7,7 @@ namespace TimeTracking_Ui.Controllers
     {
         public IActionResult Index()
         {
-            ViewBag.message = "Hi!!!...";
+         //   ViewBag.message = "Hi!!!...";
             return View();
         }
         [HttpPost]
@@ -20,10 +20,19 @@ namespace TimeTracking_Ui.Controllers
                 DatabaseService databaseService = new DatabaseService();
 
                 var isSuccess = databaseService.UserLogin(login);
-
-                return Redirect("Role"); 
-
+                if (isSuccess)
+                {
+                    ViewBag.message = "Please enter your role..";
+                    return View("../Role/Index");
+                }
+                else
+                {
+                    ViewBag.message = "Please enter valid user details";
+                    return View("../Login/Index");
+                }
+            
             }
+           
             catch (Exception ex)
             {
 
