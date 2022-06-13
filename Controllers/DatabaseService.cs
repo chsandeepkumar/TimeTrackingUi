@@ -7,6 +7,7 @@ namespace TimeTracking_Ui.Controllers
     public class DatabaseService
     {
         private object userRegistration;
+        private object errorlabel;
         public const string DatabaseConnectionString = @"Server=JANGAMUMA\SQLEXPRESS;Database=TimeTracking-Ui;persist security info=True;Integrated Security=SSPI;";
         public int SaveUser(UserRegistration userRegistration)
         {
@@ -123,23 +124,20 @@ namespace TimeTracking_Ui.Controllers
         public bool UserLogin(Login login)
         {
             try
-            {
+             {
                 SqlConnection sqlConnection = new()
                 {
                     ConnectionString = DatabaseConnectionString
                 };
-
                 sqlConnection.Open();
                 SqlCommand cmd = sqlConnection.CreateCommand();
 
-                cmd.CommandText = $"select Name from UserRegistration where name='{login.Name}'";
+                cmd.CommandText = $"select * from UserRegistration where name='{login.Name}' AND Password='{login.Password}'";
 
                 var result = cmd.ExecuteReader();
 
                 UserRegistration userRegistration = new UserRegistration();
-
-                return result.Read();
-
+                return result.Read();             
             }
             catch (Exception exception)
             {
@@ -147,5 +145,30 @@ namespace TimeTracking_Ui.Controllers
 
             }
         }
+        public bool UserRole(Role role)
+        {
+            try
+            {
+                SqlConnection sqlConnection = new()
+                {
+                    ConnectionString = DatabaseConnectionString
+                };
+                sqlConnection.Open();
+                SqlCommand cmd = sqlConnection.CreateCommand();
+
+                cmd.CommandText = $"select * from UserRegistration where name='{role.Roleid}' AND Password='{role.RoleName}'";
+
+                var result = cmd.ExecuteReader();
+
+                UserRegistration userRegistration = new UserRegistration();
+                return result.Read();
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+
+            }
+        }
+        
     }
 }
