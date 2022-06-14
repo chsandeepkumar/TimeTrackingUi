@@ -3,8 +3,10 @@ using TimeTracking_Ui.Models;
 
 namespace TimeTracking_Ui.Controllers
 {
+
     public class LoginController : Controller
     {
+       // SessionState(SessionStateBehavior.Default)] 
         public IActionResult Index()
         {
          //   ViewBag.message = "Hi!!!...";

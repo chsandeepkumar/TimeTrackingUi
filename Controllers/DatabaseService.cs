@@ -97,6 +97,7 @@ namespace TimeTracking_Ui.Controllers
 
                 var Count = sqlCommand.ExecuteNonQuery();
                 return Count;
+
             }
             catch (Exception ex)
             {
@@ -124,7 +125,7 @@ namespace TimeTracking_Ui.Controllers
         public bool UserLogin(Login login)
         {
             try
-             {
+            {
                 SqlConnection sqlConnection = new()
                 {
                     ConnectionString = DatabaseConnectionString
@@ -137,7 +138,21 @@ namespace TimeTracking_Ui.Controllers
                 var result = cmd.ExecuteReader();
 
                 UserRegistration userRegistration = new UserRegistration();
-                return result.Read();             
+
+                if (result.Read())
+                {
+                    result.Close();
+                    SqlCommand sqlcmd = sqlConnection.CreateCommand();
+                    sqlcmd.CommandText = $"update UserRegistration set IsActive = 1, LoggedinCreatedDateTime = '{DateTime.Now}' where Name = '{login.Name}'";
+                    var result1 = sqlcmd.ExecuteNonQuery();
+                    if (result1 > 0)
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+
             }
             catch (Exception exception)
             {
@@ -169,6 +184,29 @@ namespace TimeTracking_Ui.Controllers
 
             }
         }
-        
+        public bool UserLogout(Logout logout)
+        {
+
+
+            SqlConnection sqlConnection = new()
+            {
+                ConnectionString = DatabaseConnectionString
+            };
+            sqlConnection.Open();
+            SqlCommand sqlcmd = sqlConnection.CreateCommand();
+
+            sqlcmd.CommandText = $"update UserRegistration set IsActive = 0, LoggedoutCreatedDateTime = '{DateTime.Now}' " +
+                $"where Name = '{logout.Name}'";
+            var result1 = sqlcmd.ExecuteNonQuery();
+            if (result1 > 0)
+            {
+                return true;
+            }
+
+
+            return false;
+
+
+        }
     }
 }
